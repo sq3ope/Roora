@@ -1,1 +1,7 @@
 Application that will hopefully help me with shopping orders from my wife.
+
+In order to build, you have to install Oracle jdbc driver artifact in local Maven repository, eg.:
+
+mvn install:install-file -Dfile=./ojdbc14.jar -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.2 -Dpackaging=jar
+
+You can find the ojdbc jar in your Oracle installation.
