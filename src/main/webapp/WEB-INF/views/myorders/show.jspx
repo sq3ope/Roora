@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_org_roora_domain_MyOrder" object="${myorder}" path="/myorders" z="ITnamCiHSKClwjgG49HC/UE83NY=">
+        <field:display date="true" dateTimePattern="${myOrder_created_date_format}" field="created" id="s_org_roora_domain_MyOrder_created" object="${myorder}" z="6tlbvt8NcY8bp+sfJkrPwqnIOTU="/>
+        <field:display field="description" id="s_org_roora_domain_MyOrder_description" object="${myorder}" z="91cOOiSpdag6ie5kWqeXqgJkkTs="/>
+        <field:display field="store" id="s_org_roora_domain_MyOrder_store" object="${myorder}" z="EV0te2kZsouxpTNmNCeFMnARNME="/>
+        <field:display field="person" id="s_org_roora_domain_MyOrder_person" object="${myorder}" z="6kinA+HfWAIs+AweJKq6C/fgM9Q="/>
+    </page:show>
+</div>

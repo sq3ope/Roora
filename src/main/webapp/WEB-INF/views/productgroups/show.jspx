@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_org_roora_domain_ProductGroup" object="${productgroup}" path="/productgroups" z="64KjtLHlhV4Tg7DSrWT5upLrtV8=">
+        <field:display field="name" id="s_org_roora_domain_ProductGroup_name" object="${productgroup}" z="NGvCk4ozvllXF84bxmF+9PVPFNw="/>
+        <field:display field="productGroup" id="s_org_roora_domain_ProductGroup_productGroup" object="${productgroup}" z="z4pv2PPuOybyAwfFd5JArrjpZOQ="/>
+    </page:show>
+</div>

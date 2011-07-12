@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_org_roora_domain_OrderItem" items="${orderitems}" z="tqubVfdWPQ9RSy4j8pi3ZPEE7GU=">
+        <table:table data="${orderitems}" id="l_org_roora_domain_OrderItem" path="/orderitems" z="dQzeHvTDjpmSEFMoi2hq8utYYbk=">
+            <table:column id="c_org_roora_domain_OrderItem_quantity" property="quantity" z="yRhJYI7XUIrldUL87guQ2Cp4uDM="/>
+            <table:column id="c_org_roora_domain_OrderItem_description" property="description" z="fRTe5z6TWIPaYVBbcssgE5DAXXY="/>
+            <table:column id="c_org_roora_domain_OrderItem_unit" property="unit" z="PUxTiMHZvtcJwF4CiDR6cOu0eUg="/>
+            <table:column id="c_org_roora_domain_OrderItem_myOrder" property="myOrder" z="ex/2G2T3ikS5NwtB9i5E8YlSwVI="/>
+            <table:column id="c_org_roora_domain_OrderItem_product" property="product" z="oKKu5XzOKOIkJDkDz8I/plYjO+8="/>
+        </table:table>
+    </page:list>
+</div>

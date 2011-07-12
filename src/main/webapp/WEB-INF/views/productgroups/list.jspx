@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_org_roora_domain_ProductGroup" items="${productgroups}" z="dx+XNcXh+VtIY0vvZBByOwiqOtY=">
+        <table:table data="${productgroups}" id="l_org_roora_domain_ProductGroup" path="/productgroups" z="/b4TMXYgjdxFKIG7U03WmYkm2Rs=">
+            <table:column id="c_org_roora_domain_ProductGroup_name" property="name" z="/ixrq5qqhEz+pY+UF39ahr+/k68="/>
+            <table:column id="c_org_roora_domain_ProductGroup_productGroup" property="productGroup" z="viwo3A3vdf2SfqLe+T35xp2sP/U="/>
+        </table:table>
+    </page:list>
+</div>
