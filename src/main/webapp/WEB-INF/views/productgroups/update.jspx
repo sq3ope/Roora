@@ -4,6 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_org_roora_domain_ProductGroup" modelAttribute="productGroup" path="/productgroups" versionField="Version" z="1ogwFEE1k7ExQwTxrn/SxNznBAI=">
         <field:input field="name" id="c_org_roora_domain_ProductGroup_name" z="Sr02BlATl9EfFNJrfELnDoCw7MQ="/>
-        <field:select field="productGroup" id="c_org_roora_domain_ProductGroup_productGroup" itemValue="id" items="${productgroups}" path="/productgroups" z="u0eaXwVOVRXiv2X+chuU1wYYsbs="/>
+        <field:select field="productGroup" id="c_org_roora_domain_ProductGroup_productGroup" itemValue="id"  items="${productgroups}" path="/productgroups" z="u0eaXwVOVRXiv2X+chuU1wYYsbs="/>
     </form:update>
 </div>
