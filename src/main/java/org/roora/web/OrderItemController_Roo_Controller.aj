@@ -95,17 +95,17 @@ privileged aspect OrderItemController_Roo_Controller {
     }
     
     @ModelAttribute("orderitems")
-    public Collection<OrderItem> OrderItemController.populateOrderItems() {
+    public java.util.Collection<OrderItem> OrderItemController.populateOrderItems() {
         return OrderItem.findAllOrderItems();
     }
     
     @ModelAttribute("products")
-    public Collection<Product> OrderItemController.populateProducts() {
+    public java.util.Collection<Product> OrderItemController.populateProducts() {
         return Product.findAllProducts();
     }
     
     @ModelAttribute("units")
-    public Collection<Unit> OrderItemController.populateUnits() {
+    public java.util.Collection<Unit> OrderItemController.populateUnits() {
         return Unit.findAllUnits();
     }
     

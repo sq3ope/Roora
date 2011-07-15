@@ -35,12 +35,16 @@ entity --class ~.domain.Sector --testAutomatically
 field string --fieldName name 
 field number --fieldName orderNum --type java.lang.Long --class ~.domain.Sector
 
+entity --class ~.domain.ProductStatus --testAutomatically
+field string --fieldName name 
+
 # --- References ---
 
 field reference --fieldName unit --type ~.domain.Unit --class ~.domain.OrderItem
 field reference --fieldName myOrder --type ~.domain.MyOrder --class ~.domain.OrderItem
 field reference --fieldName store --type ~.domain.Store --class ~.domain.MyOrder
 field reference --fieldName unit --type ~.domain.Unit --class ~.domain.Product
+field reference --fieldName status --type ~.domain.ProductStatus --class ~.domain.Product
 field reference --fieldName product --type ~.domain.Product --class ~.domain.OrderItem
 field reference --fieldName person --type ~.domain.Person --class ~.domain.MyOrder
 field reference --fieldName productGroup --type ~.domain.ProductGroup --class ~.domain.Product

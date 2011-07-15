@@ -10,12 +10,10 @@ privileged aspect OrderItem_Roo_ToString {
     public String OrderItem.toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Description: ").append(getDescription()).append(", ");
-        sb.append("Id: ").append(getId()).append(", ");
         sb.append("MyOrder: ").append(getMyOrder()).append(", ");
         sb.append("Product: ").append(getProduct()).append(", ");
         sb.append("Quantity: ").append(getQuantity()).append(", ");
-        sb.append("Unit: ").append(getUnit()).append(", ");
-        sb.append("Version: ").append(getVersion());
+        sb.append("Unit: ").append(getUnit());
         return sb.toString();
     }
     

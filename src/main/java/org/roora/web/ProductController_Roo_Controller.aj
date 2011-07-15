@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.roora.domain.Product;
 import org.roora.domain.ProductGroup;
+import org.roora.domain.ProductStatus;
 import org.roora.domain.Unit;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -94,12 +95,17 @@ privileged aspect ProductController_Roo_Controller {
     }
     
     @ModelAttribute("productgroups")
-    public Collection<ProductGroup> ProductController.populateProductGroups() {
+    public java.util.Collection<ProductGroup> ProductController.populateProductGroups() {
         return ProductGroup.findAllProductGroups();
     }
     
+    @ModelAttribute("productstatuses")
+    public java.util.Collection<ProductStatus> ProductController.populateProductStatuses() {
+        return ProductStatus.findAllProductStatuses();
+    }
+    
     @ModelAttribute("units")
-    public Collection<Unit> ProductController.populateUnits() {
+    public java.util.Collection<Unit> ProductController.populateUnits() {
         return Unit.findAllUnits();
     }
     

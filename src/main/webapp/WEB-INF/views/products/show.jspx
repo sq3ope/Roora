@@ -4,8 +4,9 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_org_roora_domain_Product" object="${product}" path="/products" z="AS8jYOkcpNDPsa38251t6CSjD3g=">
         <field:display field="name" id="s_org_roora_domain_Product_name" object="${product}" z="QAyHecIQS+J0icbdSAwPW1OKQzM="/>
-        <field:display field="status" id="s_org_roora_domain_Product_status" object="${product}" z="Hdca2P0rveTFWk8tP+aEEcnvJUo="/>
+        
         <field:display field="unit" id="s_org_roora_domain_Product_unit" object="${product}" z="3IFNlw20dKXdJEjPyw89A2r8j1E="/>
         <field:display field="productGroup" id="s_org_roora_domain_Product_productGroup" object="${product}" z="x69SNn2ftcdFJGfSWq+lSvemfLM="/>
+    <field:display field="status" id="s_org_roora_domain_Product_status" object="${product}" z="Hdca2P0rveTFWk8tP+aEEcnvJUo="/>
     </page:show>
 </div>

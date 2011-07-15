@@ -6,9 +6,9 @@ package org.roora.web;
 import java.lang.String;
 import org.roora.domain.MyOrder;
 import org.roora.domain.OrderItem;
-import org.roora.domain.Person;
 import org.roora.domain.Product;
 import org.roora.domain.ProductGroup;
+import org.roora.domain.ProductStatus;
 import org.roora.domain.Sector;
 import org.roora.domain.Store;
 import org.roora.domain.Unit;
@@ -20,9 +20,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(new MyOrderConverter());
         registry.addConverter(new OrderItemConverter());
-        registry.addConverter(new PersonConverter());
         registry.addConverter(new ProductConverter());
         registry.addConverter(new ProductGroupConverter());
+        registry.addConverter(new ProductStatusConverter());
         registry.addConverter(new SectorConverter());
         registry.addConverter(new StoreConverter());
         registry.addConverter(new UnitConverter());
@@ -33,58 +33,58 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         installLabelConverters(getObject());
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.MyOrderConverter implements Converter<MyOrder, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.MyOrderConverter implements Converter<MyOrder, String>  {
         public String convert(MyOrder myOrder) {
-            return new StringBuilder().append(myOrder.getCreated()).append(" ").append(myOrder.getDescription()).toString();
+        return new StringBuilder().append(myOrder.getCreated()).append(" ").append(myOrder.getDescription()).toString();
         }
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.OrderItemConverter implements Converter<OrderItem, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.OrderItemConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.OrderItem, java.lang.String>  {
         public String convert(OrderItem orderItem) {
-            return new StringBuilder().append(orderItem.getQuantity()).append(" ").append(orderItem.getDescription()).toString();
+        return new StringBuilder().append(orderItem.getQuantity()).append(" ").append(orderItem.getDescription()).toString();
         }
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.PersonConverter implements Converter<Person, String> {
-        public String convert(Person person) {
-            return new StringBuilder().append(person.getEmail()).append(" ").append(person.getFirstName()).append(" ").append(person.getLastName()).append(" ").append(person.getPassword()).toString();
-        }
-        
-    }
-    
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductConverter implements Converter<Product, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.Product, java.lang.String>  {
         public String convert(Product product) {
-            return new StringBuilder().append(product.getName()).append(" ").append(product.getStatus()).toString();
+        return new StringBuilder().append(product.getName()).toString();
         }
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductGroupConverter implements Converter<ProductGroup, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductGroupConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.ProductGroup, java.lang.String>  {
         public String convert(ProductGroup productGroup) {
-            return new StringBuilder().append(productGroup.getName()).toString();
+        return new StringBuilder().append(productGroup.getName()).toString();
         }
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.SectorConverter implements Converter<Sector, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductStatusConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.ProductStatus, java.lang.String>  {
+        public String convert(ProductStatus productStatus) {
+        return new StringBuilder().append(productStatus.getName()).toString();
+        }
+        
+    }
+    
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.SectorConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.Sector, java.lang.String>  {
         public String convert(Sector sector) {
-            return new StringBuilder().append(sector.getName()).append(" ").append(sector.getOrderNum()).toString();
+        return new StringBuilder().append(sector.getName()).append(" ").append(sector.getOrderNum()).toString();
         }
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.StoreConverter implements Converter<Store, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.StoreConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.Store, java.lang.String>  {
         public String convert(Store store) {
-            return new StringBuilder().append(store.getName()).toString();
+        return new StringBuilder().append(store.getName()).toString();
         }
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.UnitConverter implements Converter<Unit, String> {
+    static class org.roora.web.ApplicationConversionServiceFactoryBean.UnitConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.Unit, java.lang.String>  {
         public String convert(Unit unit) {
-            return new StringBuilder().append(unit.getName()).toString();
+        return new StringBuilder().append(unit.getName()).toString();
         }
         
     }

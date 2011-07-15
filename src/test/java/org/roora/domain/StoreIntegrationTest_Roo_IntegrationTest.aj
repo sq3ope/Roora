@@ -83,7 +83,7 @@ privileged aspect StoreIntegrationTest_Roo_IntegrationTest {
         obj = org.roora.domain.Store.findStore(id);
         boolean modified =  dod.modifyStore(obj);
         java.lang.Integer currentVersion = obj.getVersion();
-        org.roora.domain.Store merged =  obj.merge();
+        org.roora.domain.Store merged = (org.roora.domain.Store) obj.merge();
         obj.flush();
         org.junit.Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         org.junit.Assert.assertTrue("Version for 'Store' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);

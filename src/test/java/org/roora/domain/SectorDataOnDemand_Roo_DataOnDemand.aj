@@ -3,17 +3,9 @@
 
 package org.roora.domain;
 
-import java.lang.Long;
-import java.lang.String;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.roora.domain.Sector;
-import org.roora.domain.Store;
 import org.roora.domain.StoreDataOnDemand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +14,7 @@ privileged aspect SectorDataOnDemand_Roo_DataOnDemand {
     
     declare @type: SectorDataOnDemand: @Component;
     
-    private Random SectorDataOnDemand.rnd = new SecureRandom();
+    private Random SectorDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<Sector> SectorDataOnDemand.data;
     
@@ -30,25 +22,25 @@ privileged aspect SectorDataOnDemand_Roo_DataOnDemand {
     private StoreDataOnDemand SectorDataOnDemand.storeDataOnDemand;
     
     public Sector SectorDataOnDemand.getNewTransientSector(int index) {
-        Sector obj = new Sector();
+        org.roora.domain.Sector obj = new org.roora.domain.Sector();
         setName(obj, index);
         setOrderNum(obj, index);
         setStore(obj, index);
         return obj;
     }
     
-    public void SectorDataOnDemand.setName(Sector obj, int index) {
-        String name = "name_" + index;
+    private void SectorDataOnDemand.setName(Sector obj, int index) {
+        java.lang.String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void SectorDataOnDemand.setOrderNum(Sector obj, int index) {
-        Long orderNum = new Integer(index).longValue();
+    private void SectorDataOnDemand.setOrderNum(Sector obj, int index) {
+        java.lang.Long orderNum = new Integer(index).longValue();
         obj.setOrderNum(orderNum);
     }
     
-    public void SectorDataOnDemand.setStore(Sector obj, int index) {
-        Store store = storeDataOnDemand.getRandomStore();
+    private void SectorDataOnDemand.setStore(Sector obj, int index) {
+        org.roora.domain.Store store = storeDataOnDemand.getRandomStore();
         obj.setStore(store);
     }
     
@@ -71,25 +63,16 @@ privileged aspect SectorDataOnDemand_Roo_DataOnDemand {
     }
     
     public void SectorDataOnDemand.init() {
-        data = Sector.findSectorEntries(0, 10);
+        data = org.roora.domain.Sector.findSectorEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'Sector' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.Sector>();
+        data = new java.util.ArrayList<org.roora.domain.Sector>();
         for (int i = 0; i < 10; i++) {
-            Sector obj = getNewTransientSector(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.Sector obj = getNewTransientSector(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

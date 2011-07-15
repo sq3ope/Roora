@@ -3,21 +3,10 @@
 
 package org.roora.domain;
 
-import java.lang.String;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.roora.domain.MyOrder;
-import org.roora.domain.Person;
 import org.roora.domain.PersonDataOnDemand;
-import org.roora.domain.Store;
 import org.roora.domain.StoreDataOnDemand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,43 +15,43 @@ privileged aspect MyOrderDataOnDemand_Roo_DataOnDemand {
     
     declare @type: MyOrderDataOnDemand: @Component;
     
-    private Random MyOrderDataOnDemand.rnd = new SecureRandom();
+    private Random MyOrderDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<MyOrder> MyOrderDataOnDemand.data;
     
     @Autowired
-    private PersonDataOnDemand MyOrderDataOnDemand.personDataOnDemand;
-    
-    @Autowired
     private StoreDataOnDemand MyOrderDataOnDemand.storeDataOnDemand;
     
+    @Autowired
+    private PersonDataOnDemand MyOrderDataOnDemand.personDataOnDemand;
+    
     public MyOrder MyOrderDataOnDemand.getNewTransientMyOrder(int index) {
-        MyOrder obj = new MyOrder();
+        org.roora.domain.MyOrder obj = new org.roora.domain.MyOrder();
         setCreated(obj, index);
         setDescription(obj, index);
-        setPerson(obj, index);
         setStore(obj, index);
+        setPerson(obj, index);
         return obj;
     }
     
-    public void MyOrderDataOnDemand.setCreated(MyOrder obj, int index) {
-        Date created = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+    private void MyOrderDataOnDemand.setCreated(MyOrder obj, int index) {
+        java.util.Date created = new java.util.GregorianCalendar(java.util.Calendar.getInstance().get(java.util.Calendar.YEAR), java.util.Calendar.getInstance().get(java.util.Calendar.MONTH), java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH), java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY), java.util.Calendar.getInstance().get(java.util.Calendar.MINUTE), java.util.Calendar.getInstance().get(java.util.Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreated(created);
     }
     
-    public void MyOrderDataOnDemand.setDescription(MyOrder obj, int index) {
-        String description = "description_" + index;
+    private void MyOrderDataOnDemand.setDescription(MyOrder obj, int index) {
+        java.lang.String description = "description_" + index;
         obj.setDescription(description);
     }
     
-    public void MyOrderDataOnDemand.setPerson(MyOrder obj, int index) {
-        Person person = personDataOnDemand.getRandomPerson();
-        obj.setPerson(person);
+    private void MyOrderDataOnDemand.setStore(MyOrder obj, int index) {
+        org.roora.domain.Store store = storeDataOnDemand.getRandomStore();
+        obj.setStore(store);
     }
     
-    public void MyOrderDataOnDemand.setStore(MyOrder obj, int index) {
-        Store store = storeDataOnDemand.getRandomStore();
-        obj.setStore(store);
+    private void MyOrderDataOnDemand.setPerson(MyOrder obj, int index) {
+        org.roora.domain.Person person = personDataOnDemand.getRandomPerson();
+        obj.setPerson(person);
     }
     
     public MyOrder MyOrderDataOnDemand.getSpecificMyOrder(int index) {
@@ -84,25 +73,16 @@ privileged aspect MyOrderDataOnDemand_Roo_DataOnDemand {
     }
     
     public void MyOrderDataOnDemand.init() {
-        data = MyOrder.findMyOrderEntries(0, 10);
+        data = org.roora.domain.MyOrder.findMyOrderEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'MyOrder' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.MyOrder>();
+        data = new java.util.ArrayList<org.roora.domain.MyOrder>();
         for (int i = 0; i < 10; i++) {
-            MyOrder obj = getNewTransientMyOrder(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.MyOrder obj = getNewTransientMyOrder(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

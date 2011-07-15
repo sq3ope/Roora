@@ -3,14 +3,8 @@
 
 package org.roora.domain;
 
-import java.lang.String;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.roora.domain.Store;
 import org.springframework.stereotype.Component;
 
@@ -18,18 +12,18 @@ privileged aspect StoreDataOnDemand_Roo_DataOnDemand {
     
     declare @type: StoreDataOnDemand: @Component;
     
-    private Random StoreDataOnDemand.rnd = new SecureRandom();
+    private Random StoreDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<Store> StoreDataOnDemand.data;
     
     public Store StoreDataOnDemand.getNewTransientStore(int index) {
-        Store obj = new Store();
+        org.roora.domain.Store obj = new org.roora.domain.Store();
         setName(obj, index);
         return obj;
     }
     
-    public void StoreDataOnDemand.setName(Store obj, int index) {
-        String name = "name_" + index;
+    private void StoreDataOnDemand.setName(Store obj, int index) {
+        java.lang.String name = "name_" + index;
         obj.setName(name);
     }
     
@@ -52,25 +46,16 @@ privileged aspect StoreDataOnDemand_Roo_DataOnDemand {
     }
     
     public void StoreDataOnDemand.init() {
-        data = Store.findStoreEntries(0, 10);
+        data = org.roora.domain.Store.findStoreEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'Store' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.Store>();
+        data = new java.util.ArrayList<org.roora.domain.Store>();
         for (int i = 0; i < 10; i++) {
-            Store obj = getNewTransientStore(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.Store obj = getNewTransientStore(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

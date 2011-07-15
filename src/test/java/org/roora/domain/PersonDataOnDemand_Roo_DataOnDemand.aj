@@ -3,14 +3,8 @@
 
 package org.roora.domain;
 
-import java.lang.String;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.roora.domain.Person;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +12,12 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
     
     declare @type: PersonDataOnDemand: @Component;
     
-    private Random PersonDataOnDemand.rnd = new SecureRandom();
+    private Random PersonDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<Person> PersonDataOnDemand.data;
     
     public Person PersonDataOnDemand.getNewTransientPerson(int index) {
-        Person obj = new Person();
+        org.roora.domain.Person obj = new org.roora.domain.Person();
         setEmail(obj, index);
         setFirstName(obj, index);
         setLastName(obj, index);
@@ -31,23 +25,23 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
         return obj;
     }
     
-    public void PersonDataOnDemand.setEmail(Person obj, int index) {
-        String email = "email_" + index;
+    private void PersonDataOnDemand.setEmail(Person obj, int index) {
+        java.lang.String email = "email_" + index;
         obj.setEmail(email);
     }
     
-    public void PersonDataOnDemand.setFirstName(Person obj, int index) {
-        String firstName = "firstName_" + index;
+    private void PersonDataOnDemand.setFirstName(Person obj, int index) {
+        java.lang.String firstName = "firstName_" + index;
         obj.setFirstName(firstName);
     }
     
-    public void PersonDataOnDemand.setLastName(Person obj, int index) {
-        String lastName = "lastName_" + index;
+    private void PersonDataOnDemand.setLastName(Person obj, int index) {
+        java.lang.String lastName = "lastName_" + index;
         obj.setLastName(lastName);
     }
     
-    public void PersonDataOnDemand.setPassword(Person obj, int index) {
-        String password = "password_" + index;
+    private void PersonDataOnDemand.setPassword(Person obj, int index) {
+        java.lang.String password = "password_" + index;
         obj.setPassword(password);
     }
     
@@ -70,25 +64,16 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
     }
     
     public void PersonDataOnDemand.init() {
-        data = Person.findPersonEntries(0, 10);
+        data = org.roora.domain.Person.findPersonEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'Person' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.Person>();
+        data = new java.util.ArrayList<org.roora.domain.Person>();
         for (int i = 0; i < 10; i++) {
-            Person obj = getNewTransientPerson(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.Person obj = getNewTransientPerson(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

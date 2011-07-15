@@ -102,12 +102,12 @@ privileged aspect MyOrderController_Roo_Controller {
     }
     
     @ModelAttribute("people")
-    public Collection<Person> MyOrderController.populatePeople() {
+    public java.util.Collection<Person> MyOrderController.populatePeople() {
         return Person.findAllPeople();
     }
     
     @ModelAttribute("stores")
-    public Collection<Store> MyOrderController.populateStores() {
+    public java.util.Collection<Store> MyOrderController.populateStores() {
         return Store.findAllStores();
     }
     

@@ -5,9 +5,10 @@
     <page:list id="pl_org_roora_domain_Product" items="${products}" z="lb+J4XgZI7GA8pIKnjywRGccmHo=">
         <table:table data="${products}" id="l_org_roora_domain_Product" path="/products" z="iw9GMc7Hyw2vgsVhhoPmwUB9aHM=">
             <table:column id="c_org_roora_domain_Product_name" property="name" z="3ch+Mk6woneBZF7VvJ+OAP9H3bY="/>
-            <table:column id="c_org_roora_domain_Product_status" property="status" z="GCe1ws3a+hoJ3XgG4YUiH8NTsRw="/>
+            
             <table:column id="c_org_roora_domain_Product_unit" property="unit" z="o3ygHdi5v8rtyD7tFoM0lxSPIIs="/>
             <table:column id="c_org_roora_domain_Product_productGroup" property="productGroup" z="CvYWKFrkRkoPPCw75+pY+ZVImMA="/>
+        <table:column id="c_org_roora_domain_Product_status" property="status" z="GCe1ws3a+hoJ3XgG4YUiH8NTsRw="/>
         </table:table>
     </page:list>
 </div>

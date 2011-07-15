@@ -5,6 +5,7 @@ package org.roora.domain;
 
 import java.lang.String;
 import org.roora.domain.ProductGroup;
+import org.roora.domain.ProductStatus;
 import org.roora.domain.Unit;
 
 privileged aspect Product_Roo_JavaBean {
@@ -15,14 +16,6 @@ privileged aspect Product_Roo_JavaBean {
     
     public void Product.setName(String name) {
         this.name = name;
-    }
-    
-    public String Product.getStatus() {
-        return this.status;
-    }
-    
-    public void Product.setStatus(String status) {
-        this.status = status;
     }
     
     public Unit Product.getUnit() {
@@ -39,6 +32,14 @@ privileged aspect Product_Roo_JavaBean {
     
     public void Product.setProductGroup(ProductGroup productGroup) {
         this.productGroup = productGroup;
+    }
+    
+    public ProductStatus Product.getStatus() {
+        return this.status;
+    }
+    
+    public void Product.setStatus(ProductStatus status) {
+        this.status = status;
     }
     
 }

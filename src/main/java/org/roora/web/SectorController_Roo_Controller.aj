@@ -94,12 +94,12 @@ privileged aspect SectorController_Roo_Controller {
     }
     
     @ModelAttribute("sectors")
-    public Collection<Sector> SectorController.populateSectors() {
+    public java.util.Collection<Sector> SectorController.populateSectors() {
         return Sector.findAllSectors();
     }
     
     @ModelAttribute("stores")
-    public Collection<Store> SectorController.populateStores() {
+    public java.util.Collection<Store> SectorController.populateStores() {
         return Store.findAllStores();
     }
     

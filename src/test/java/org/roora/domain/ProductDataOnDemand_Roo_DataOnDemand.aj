@@ -3,18 +3,11 @@
 
 package org.roora.domain;
 
-import java.lang.String;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.roora.domain.Product;
-import org.roora.domain.ProductGroup;
 import org.roora.domain.ProductGroupDataOnDemand;
-import org.roora.domain.Unit;
+import org.roora.domain.ProductStatusDataOnDemand;
 import org.roora.domain.UnitDataOnDemand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,43 +16,46 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
     
     declare @type: ProductDataOnDemand: @Component;
     
-    private Random ProductDataOnDemand.rnd = new SecureRandom();
+    private Random ProductDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<Product> ProductDataOnDemand.data;
+    
+    @Autowired
+    private UnitDataOnDemand ProductDataOnDemand.unitDataOnDemand;
     
     @Autowired
     private ProductGroupDataOnDemand ProductDataOnDemand.productGroupDataOnDemand;
     
     @Autowired
-    private UnitDataOnDemand ProductDataOnDemand.unitDataOnDemand;
+    private ProductStatusDataOnDemand ProductDataOnDemand.productStatusDataOnDemand;
     
     public Product ProductDataOnDemand.getNewTransientProduct(int index) {
-        Product obj = new Product();
+        org.roora.domain.Product obj = new org.roora.domain.Product();
         setName(obj, index);
+        setUnit(obj, index);
         setProductGroup(obj, index);
         setStatus(obj, index);
-        setUnit(obj, index);
         return obj;
     }
     
-    public void ProductDataOnDemand.setName(Product obj, int index) {
-        String name = "name_" + index;
+    private void ProductDataOnDemand.setName(Product obj, int index) {
+        java.lang.String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void ProductDataOnDemand.setProductGroup(Product obj, int index) {
-        ProductGroup productGroup = productGroupDataOnDemand.getRandomProductGroup();
+    private void ProductDataOnDemand.setUnit(Product obj, int index) {
+        org.roora.domain.Unit unit = unitDataOnDemand.getRandomUnit();
+        obj.setUnit(unit);
+    }
+    
+    private void ProductDataOnDemand.setProductGroup(Product obj, int index) {
+        org.roora.domain.ProductGroup productGroup = productGroupDataOnDemand.getRandomProductGroup();
         obj.setProductGroup(productGroup);
     }
     
-    public void ProductDataOnDemand.setStatus(Product obj, int index) {
-        String status = "status_" + index;
+    private void ProductDataOnDemand.setStatus(Product obj, int index) {
+        org.roora.domain.ProductStatus status = productStatusDataOnDemand.getRandomProductStatus();
         obj.setStatus(status);
-    }
-    
-    public void ProductDataOnDemand.setUnit(Product obj, int index) {
-        Unit unit = unitDataOnDemand.getRandomUnit();
-        obj.setUnit(unit);
     }
     
     public Product ProductDataOnDemand.getSpecificProduct(int index) {
@@ -81,25 +77,16 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
     }
     
     public void ProductDataOnDemand.init() {
-        data = Product.findProductEntries(0, 10);
+        data = org.roora.domain.Product.findProductEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'Product' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.Product>();
+        data = new java.util.ArrayList<org.roora.domain.Product>();
         for (int i = 0; i < 10; i++) {
-            Product obj = getNewTransientProduct(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.Product obj = getNewTransientProduct(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

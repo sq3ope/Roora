@@ -3,21 +3,11 @@
 
 package org.roora.domain;
 
-import java.lang.String;
-import java.math.BigDecimal;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import org.roora.domain.MyOrder;
 import org.roora.domain.MyOrderDataOnDemand;
 import org.roora.domain.OrderItem;
-import org.roora.domain.Product;
 import org.roora.domain.ProductDataOnDemand;
-import org.roora.domain.Unit;
 import org.roora.domain.UnitDataOnDemand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,9 +16,12 @@ privileged aspect OrderItemDataOnDemand_Roo_DataOnDemand {
     
     declare @type: OrderItemDataOnDemand: @Component;
     
-    private Random OrderItemDataOnDemand.rnd = new SecureRandom();
+    private Random OrderItemDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<OrderItem> OrderItemDataOnDemand.data;
+    
+    @Autowired
+    private UnitDataOnDemand OrderItemDataOnDemand.unitDataOnDemand;
     
     @Autowired
     private MyOrderDataOnDemand OrderItemDataOnDemand.myOrderDataOnDemand;
@@ -36,42 +29,39 @@ privileged aspect OrderItemDataOnDemand_Roo_DataOnDemand {
     @Autowired
     private ProductDataOnDemand OrderItemDataOnDemand.productDataOnDemand;
     
-    @Autowired
-    private UnitDataOnDemand OrderItemDataOnDemand.unitDataOnDemand;
-    
     public OrderItem OrderItemDataOnDemand.getNewTransientOrderItem(int index) {
-        OrderItem obj = new OrderItem();
+        org.roora.domain.OrderItem obj = new org.roora.domain.OrderItem();
+        setQuantity(obj, index);
         setDescription(obj, index);
+        setUnit(obj, index);
         setMyOrder(obj, index);
         setProduct(obj, index);
-        setQuantity(obj, index);
-        setUnit(obj, index);
         return obj;
     }
     
-    public void OrderItemDataOnDemand.setDescription(OrderItem obj, int index) {
-        String description = "description_" + index;
-        obj.setDescription(description);
-    }
-    
-    public void OrderItemDataOnDemand.setMyOrder(OrderItem obj, int index) {
-        MyOrder myOrder = myOrderDataOnDemand.getRandomMyOrder();
-        obj.setMyOrder(myOrder);
-    }
-    
-    public void OrderItemDataOnDemand.setProduct(OrderItem obj, int index) {
-        Product product = productDataOnDemand.getRandomProduct();
-        obj.setProduct(product);
-    }
-    
-    public void OrderItemDataOnDemand.setQuantity(OrderItem obj, int index) {
-        BigDecimal quantity = BigDecimal.valueOf(index);
+    private void OrderItemDataOnDemand.setQuantity(OrderItem obj, int index) {
+        java.math.BigDecimal quantity = java.math.BigDecimal.valueOf(index);
         obj.setQuantity(quantity);
     }
     
-    public void OrderItemDataOnDemand.setUnit(OrderItem obj, int index) {
-        Unit unit = unitDataOnDemand.getRandomUnit();
+    private void OrderItemDataOnDemand.setDescription(OrderItem obj, int index) {
+        java.lang.String description = "description_" + index;
+        obj.setDescription(description);
+    }
+    
+    private void OrderItemDataOnDemand.setUnit(OrderItem obj, int index) {
+        org.roora.domain.Unit unit = unitDataOnDemand.getRandomUnit();
         obj.setUnit(unit);
+    }
+    
+    private void OrderItemDataOnDemand.setMyOrder(OrderItem obj, int index) {
+        org.roora.domain.MyOrder myOrder = myOrderDataOnDemand.getRandomMyOrder();
+        obj.setMyOrder(myOrder);
+    }
+    
+    private void OrderItemDataOnDemand.setProduct(OrderItem obj, int index) {
+        org.roora.domain.Product product = productDataOnDemand.getRandomProduct();
+        obj.setProduct(product);
     }
     
     public OrderItem OrderItemDataOnDemand.getSpecificOrderItem(int index) {
@@ -93,25 +83,16 @@ privileged aspect OrderItemDataOnDemand_Roo_DataOnDemand {
     }
     
     public void OrderItemDataOnDemand.init() {
-        data = OrderItem.findOrderItemEntries(0, 10);
+        data = org.roora.domain.OrderItem.findOrderItemEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'OrderItem' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.OrderItem>();
+        data = new java.util.ArrayList<org.roora.domain.OrderItem>();
         for (int i = 0; i < 10; i++) {
-            OrderItem obj = getNewTransientOrderItem(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.OrderItem obj = getNewTransientOrderItem(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

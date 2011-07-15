@@ -3,14 +3,8 @@
 
 package org.roora.domain;
 
-import java.lang.String;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.roora.domain.ProductGroup;
 import org.springframework.stereotype.Component;
 
@@ -18,24 +12,24 @@ privileged aspect ProductGroupDataOnDemand_Roo_DataOnDemand {
     
     declare @type: ProductGroupDataOnDemand: @Component;
     
-    private Random ProductGroupDataOnDemand.rnd = new SecureRandom();
+    private Random ProductGroupDataOnDemand.rnd = new java.security.SecureRandom();
     
     private List<ProductGroup> ProductGroupDataOnDemand.data;
     
     public ProductGroup ProductGroupDataOnDemand.getNewTransientProductGroup(int index) {
-        ProductGroup obj = new ProductGroup();
+        org.roora.domain.ProductGroup obj = new org.roora.domain.ProductGroup();
         setName(obj, index);
         setProductGroup(obj, index);
         return obj;
     }
     
-    public void ProductGroupDataOnDemand.setName(ProductGroup obj, int index) {
-        String name = "name_" + index;
+    private void ProductGroupDataOnDemand.setName(ProductGroup obj, int index) {
+        java.lang.String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void ProductGroupDataOnDemand.setProductGroup(ProductGroup obj, int index) {
-        ProductGroup productGroup = obj;
+    private void ProductGroupDataOnDemand.setProductGroup(ProductGroup obj, int index) {
+        org.roora.domain.ProductGroup productGroup = obj;
         obj.setProductGroup(productGroup);
     }
     
@@ -58,25 +52,16 @@ privileged aspect ProductGroupDataOnDemand_Roo_DataOnDemand {
     }
     
     public void ProductGroupDataOnDemand.init() {
-        data = ProductGroup.findProductGroupEntries(0, 10);
+        data = org.roora.domain.ProductGroup.findProductGroupEntries(0, 10);
         if (data == null) throw new IllegalStateException("Find entries implementation for 'ProductGroup' illegally returned null");
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<org.roora.domain.ProductGroup>();
+        data = new java.util.ArrayList<org.roora.domain.ProductGroup>();
         for (int i = 0; i < 10; i++) {
-            ProductGroup obj = getNewTransientProductGroup(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
+            org.roora.domain.ProductGroup obj = getNewTransientProductGroup(i);
+            obj.persist();
             obj.flush();
             data.add(obj);
         }

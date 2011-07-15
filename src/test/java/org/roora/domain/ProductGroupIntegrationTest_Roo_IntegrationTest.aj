@@ -83,7 +83,7 @@ privileged aspect ProductGroupIntegrationTest_Roo_IntegrationTest {
         obj = org.roora.domain.ProductGroup.findProductGroup(id);
         boolean modified =  dod.modifyProductGroup(obj);
         java.lang.Integer currentVersion = obj.getVersion();
-        org.roora.domain.ProductGroup merged =  obj.merge();
+        org.roora.domain.ProductGroup merged = (org.roora.domain.ProductGroup) obj.merge();
         obj.flush();
         org.junit.Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         org.junit.Assert.assertTrue("Version for 'ProductGroup' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
