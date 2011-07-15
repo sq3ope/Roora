@@ -101,7 +101,7 @@ privileged aspect ProductGroup_Roo_Entity {
     }
     
     public static ProductGroup ProductGroup.findProductGroup(Long id) {
-        if (id == null) return null;
+        if (id == null) return null; 
         return entityManager().find(ProductGroup.class, id);
     }
     

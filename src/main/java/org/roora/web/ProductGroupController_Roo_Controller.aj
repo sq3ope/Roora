@@ -72,13 +72,7 @@ privileged aspect ProductGroupController_Roo_Controller {
         productGroup.merge();
         return "redirect:/productgroups/" + encodeUrlPathSegment(productGroup.getId().toString(), httpServletRequest);
     }
-    
-    @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String ProductGroupController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("productGroup", ProductGroup.findProductGroup(id));
-        return "productgroups/update";
-    }
-    
+        
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String ProductGroupController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         ProductGroup.findProductGroup(id).remove();
@@ -87,16 +81,7 @@ privileged aspect ProductGroupController_Roo_Controller {
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
         return "redirect:/productgroups";
     }
-    
-    @ModelAttribute("productgroups")
-    public Collection<ProductGroup> ProductGroupController.populateProductGroups() {
-    	Collection<ProductGroup> groups = ProductGroup.findAllProductGroups();
-    	ProductGroup group = new ProductGroup();
-    	group.setName("brak");
-    	groups.add(group);
-        return groups;
-    }
-    
+        
     String ProductGroupController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {

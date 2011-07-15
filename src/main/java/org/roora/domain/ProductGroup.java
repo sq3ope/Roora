@@ -14,4 +14,5 @@ public class ProductGroup {
 
     @ManyToOne
     private org.roora.domain.ProductGroup productGroup;
+        
 }

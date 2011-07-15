@@ -1,9 +1,6 @@
 package org.roora.web;
 
 import org.roora.domain.Person;
-import org.roora.domain.ProductStatus;
-import org.roora.domain.Sector;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.roo.addon.web.mvc.controller.RooConversionService;
