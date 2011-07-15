@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+import antlr.collections.List;
+
 privileged aspect ProductGroupController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
@@ -88,7 +90,11 @@ privileged aspect ProductGroupController_Roo_Controller {
     
     @ModelAttribute("productgroups")
     public Collection<ProductGroup> ProductGroupController.populateProductGroups() {
-        return ProductGroup.findAllProductGroups();
+    	Collection<ProductGroup> groups = ProductGroup.findAllProductGroups();
+    	ProductGroup group = new ProductGroup();
+    	group.setName("brak");
+    	groups.add(group);
+        return groups;
     }
     
     String ProductGroupController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
