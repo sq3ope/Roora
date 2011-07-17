@@ -26,19 +26,7 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 privileged aspect MyOrderController_Roo_Controller {
-    
-    @RequestMapping(method = RequestMethod.POST)
-    public String MyOrderController.create(@Valid MyOrder myOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            uiModel.addAttribute("myOrder", myOrder);
-            addDateTimeFormatPatterns(uiModel);
-            return "myorders/create";
-        }
-        uiModel.asMap().clear();
-        myOrder.persist();
-        return "redirect:/myorders/" + encodeUrlPathSegment(myOrder.getId().toString(), httpServletRequest);
-    }
-    
+        
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String MyOrderController.createForm(Model uiModel) {
         uiModel.addAttribute("myOrder", new MyOrder());
