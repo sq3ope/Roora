@@ -11,8 +11,10 @@ privileged aspect MyOrder_Roo_ToString {
         StringBuilder sb = new StringBuilder();
         sb.append("Created: ").append(getCreated()).append(", ");
         sb.append("Description: ").append(getDescription()).append(", ");
+        sb.append("Id: ").append(getId()).append(", ");
         sb.append("Person: ").append(getPerson()).append(", ");
-        sb.append("Store: ").append(getStore());
+        sb.append("Store: ").append(getStore()).append(", ");
+        sb.append("Version: ").append(getVersion());
         return sb.toString();
     }
     

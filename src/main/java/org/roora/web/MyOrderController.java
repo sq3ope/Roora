@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/myorders")
 @Controller
 public class MyOrderController {
+	
+
 	@RequestMapping(method = RequestMethod.POST)
     public String create(@Valid MyOrder myOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {

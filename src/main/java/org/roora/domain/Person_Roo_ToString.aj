@@ -11,8 +11,10 @@ privileged aspect Person_Roo_ToString {
         StringBuilder sb = new StringBuilder();
         sb.append("Email: ").append(getEmail()).append(", ");
         sb.append("FirstName: ").append(getFirstName()).append(", ");
+        sb.append("Id: ").append(getId()).append(", ");
         sb.append("LastName: ").append(getLastName()).append(", ");
-        sb.append("Password: ").append(getPassword());
+        sb.append("Password: ").append(getPassword()).append(", ");
+        sb.append("Version: ").append(getVersion());
         return sb.toString();
     }
     
