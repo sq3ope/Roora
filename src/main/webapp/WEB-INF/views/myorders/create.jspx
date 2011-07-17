@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_org_roora_domain_MyOrder" modelAttribute="myOrder" path="/myorders" render="${empty dependencies}" z="l6g5xQb6LjzmO1mToeE752zKAFs=">
-    	<field:datetime dateTimePattern="${myOrder_created_date_format}" field="created" id="c_org_roora_domain_MyOrder_created" z="3pbkdRM1sWcFvso0JOZXZtfxdVY="/>
+    	<field:datetime render="false" dateTimePattern="${myOrder_created_date_format}" field="_created" id="c_org_roora_domain_MyOrder_created" z="3pbkdRM1sWcFvso0JOZXZtfxdVY="/>
         <field:input field="description" id="c_org_roora_domain_MyOrder_description" z="wq1gd2W/rMhuBS0LNUS43nDsVrA="/>
         <field:select field="store" id="c_org_roora_domain_MyOrder_store" itemValue="id" items="${stores}" path="/stores" z="S2TYC4O/ZjhuNPvndPUhtZspQS4="/>
         <field:select field="person" id="c_org_roora_domain_MyOrder_person" itemValue="id" items="${people}" path="/people" z="fCqXRhF9lfzOVHROHmDbu4BZlW0="/>
