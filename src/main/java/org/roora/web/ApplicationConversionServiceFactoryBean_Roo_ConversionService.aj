@@ -6,9 +6,7 @@ package org.roora.web;
 import java.lang.String;
 import org.roora.domain.MyOrder;
 import org.roora.domain.OrderItem;
-import org.roora.domain.Product;
 import org.roora.domain.ProductGroup;
-import org.roora.domain.ProductStatus;
 import org.roora.domain.Sector;
 import org.roora.domain.Store;
 import org.roora.domain.Unit;
@@ -20,9 +18,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(new MyOrderConverter());
         registry.addConverter(new OrderItemConverter());
-        registry.addConverter(new ProductConverter());
         registry.addConverter(new ProductGroupConverter());
-        registry.addConverter(new ProductStatusConverter());
         registry.addConverter(new SectorConverter());
         registry.addConverter(new StoreConverter());
         registry.addConverter(new UnitConverter());
@@ -47,23 +43,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         
     }
     
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.Product, java.lang.String>  {
-        public String convert(Product product) {
-        return new StringBuilder().append(product.getName()).toString();
-        }
-        
-    }
-    
     static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductGroupConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.ProductGroup, java.lang.String>  {
         public String convert(ProductGroup productGroup) {
         return new StringBuilder().append(productGroup.getName()).toString();
-        }
-        
-    }
-    
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.ProductStatusConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.ProductStatus, java.lang.String>  {
-        public String convert(ProductStatus productStatus) {
-        return new StringBuilder().append(productStatus.getName()).toString();
         }
         
     }

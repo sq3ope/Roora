@@ -6,7 +6,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 import org.roora.domain.Unit;
 import javax.persistence.ManyToOne;
 import org.roora.domain.ProductGroup;
-import org.roora.domain.ProductStatus;
+import org.roora.reference.ProductStatus;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Enumerated;
 
 @RooJavaBean
 @RooToString
@@ -21,6 +23,7 @@ public class Product {
     @ManyToOne
     private ProductGroup productGroup;
 
-    @ManyToOne
+    @NotNull
+    @Enumerated
     private ProductStatus status;
 }

@@ -35,9 +35,5 @@
             <menu:item id="i_sector_new" messageCode="global_menu_new" url="/sectors?form" z="sDF48u6Vq9/Rnx7Z4/dHkgrOfzo="/>
             <menu:item id="i_sector_list" messageCode="global_menu_list" url="/sectors?page=1&amp;size=${empty param.size ? 10 : param.size}" z="tZ/qAnbnigI05CJmyMkp0JsjqZg="/>
         </menu:category>
-    <menu:category id="c_productstatus" z="YM99zD07M29K6BaoxzOto+Jk8zE=">
-            <menu:item id="i_productstatus_new" messageCode="global_menu_new" url="/productstatuses?form" z="rcaOiNGu2Owz0AdfIdX18ZCp17g="/>
-        <menu:item id="i_productstatus_list" messageCode="global_menu_list" url="/productstatuses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="I15u3Gq/ZM07rbgJJIrQgoN8qOo="/>
-        </menu:category>
     </menu:menu>
 </div>

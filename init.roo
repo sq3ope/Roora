@@ -2,6 +2,14 @@ project --topLevelPackage org.roora --projectName Roora --java 6
 
 persistence setup --provider HIBERNATE --database ORACLE 
 
+# --- Enums ---
+
+enum type --class ~.reference.ProductStatus
+enum constant --name ACTIVE
+enum constant --name LOCKED
+enum constant --name DELETED
+
+
 # --- Entities---
 
 entity --class ~.domain.Unit --testAutomatically
@@ -35,22 +43,19 @@ entity --class ~.domain.Sector --testAutomatically
 field string --fieldName name 
 field number --fieldName orderNum --type java.lang.Long --class ~.domain.Sector
 
-entity --class ~.domain.ProductStatus --testAutomatically
-field string --fieldName name 
-
 # --- References ---
 
 field reference --fieldName unit --type ~.domain.Unit --class ~.domain.OrderItem
 field reference --fieldName myOrder --type ~.domain.MyOrder --class ~.domain.OrderItem
 field reference --fieldName store --type ~.domain.Store --class ~.domain.MyOrder
 field reference --fieldName unit --type ~.domain.Unit --class ~.domain.Product
-field reference --fieldName status --type ~.domain.ProductStatus --class ~.domain.Product
 field reference --fieldName product --type ~.domain.Product --class ~.domain.OrderItem
 field reference --fieldName person --type ~.domain.Person --class ~.domain.MyOrder
 field reference --fieldName productGroup --type ~.domain.ProductGroup --class ~.domain.Product
 field reference --fieldName productGroup --type ~.domain.ProductGroup --class ~.domain.ProductGroup
 field reference --fieldName store --type ~.domain.Store --class ~.domain.Sector
 field set --fieldName productGroups --type ~.domain.ProductGroup --class ~.domain.Sector
+field enum --fieldName status --type ~.reference.ProductStatus --notNull --class ~.domain.Product
 
 # --- Creating WEB tier ---
 

@@ -5,8 +5,8 @@ package org.roora.domain;
 
 import java.lang.String;
 import org.roora.domain.ProductGroup;
-import org.roora.domain.ProductStatus;
 import org.roora.domain.Unit;
+import org.roora.reference.ProductStatus;
 
 privileged aspect Product_Roo_JavaBean {
     

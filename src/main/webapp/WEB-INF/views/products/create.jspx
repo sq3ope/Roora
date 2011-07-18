@@ -4,10 +4,9 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_org_roora_domain_Product" modelAttribute="product" path="/products" render="${empty dependencies}" z="J2o3HCcqwAxovztf5WlKGKaUyNw=">
         <field:input field="name" id="c_org_roora_domain_Product_name" z="os0XzaWJR/fHT3WOeWyezZIpwao="/>
-        
         <field:select field="unit" id="c_org_roora_domain_Product_unit" itemValue="id" items="${units}" path="/units" z="BqYVEsKdvKOmsySlr+jHQVrbBjk="/>
         <field:select field="productGroup" id="c_org_roora_domain_Product_productGroup" itemValue="id" items="${productgroups}" path="/productgroups" z="5ePJlDi6oqQ69z7EEk1tGP5WY5E="/>
-    <field:select field="status" id="c_org_roora_domain_Product_status" itemValue="id" items="${productstatuses}" path="/productstatuses" z="BklzdU2IewmqDGszABDo9ljdFo0="/>
+        <field:select field="status" id="c_org_roora_domain_Product_status" items="${productstatuses}" path="productstatuses" required="true" z="LSOnJ6WgGEzCNYvFuPmdcBQw60I="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_org_roora_domain_Product" render="${not empty dependencies}" z="1q27bib/DRzALG3L9aI48JEerYs="/>
 </div>

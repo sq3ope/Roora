@@ -3,9 +3,9 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_org_roora_domain_Product" modelAttribute="product" path="/products" versionField="Version" z="kP00tOmhJkz3BXZC/5c/W1UMULQ=">
-        <field:input field="name" id="c_org_roora_domain_Product_name" z="os0XzaWJR/fHT3WOeWyezZIpwao="/>        
+        <field:input field="name" id="c_org_roora_domain_Product_name" z="os0XzaWJR/fHT3WOeWyezZIpwao="/>
         <field:select field="unit" id="c_org_roora_domain_Product_unit" itemValue="id" items="${units}" path="/units" z="BqYVEsKdvKOmsySlr+jHQVrbBjk="/>
         <field:select field="productGroup" id="c_org_roora_domain_Product_productGroup" itemValue="id" items="${productgroups}" path="/productgroups" z="5ePJlDi6oqQ69z7EEk1tGP5WY5E="/>
-    	<field:select field="status" render="false" id="c_org_roora_domain_Product_status" itemValue="id" items="${productstatuses}" path="/productstatuses" z="BklzdU2IewmqDGszABDo9ljdFo0="/>
+        <field:select field="status" id="c_org_roora_domain_Product_status" items="${productstatuses}" path="productstatuses" required="true" z="LSOnJ6WgGEzCNYvFuPmdcBQw60I="/>
     </form:update>
 </div>
