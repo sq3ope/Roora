@@ -36,24 +36,4 @@ public class MyOrderController {
         return "redirect:/myorders/" + encodeUrlPathSegment(myOrder.getId().toString(), httpServletRequest);
     }
 
-	@RequestMapping(method = RequestMethod.PUT)
-    public String update(@Valid MyOrder myOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            uiModel.addAttribute("myOrder", myOrder);
-            addDateTimeFormatPatterns(uiModel);
-            return "myorders/update";
-        }
-        
-        uiModel.asMap().clear();
-        myOrder.merge();
-        return "redirect:/myorders/" + encodeUrlPathSegment(myOrder.getId().toString(), httpServletRequest);
-    }
-
-	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-    public String updateForm(@PathVariable("id") Long id, Model uiModel) {
-		MyOrder myOrder = MyOrder.findMyOrder(id);
-        uiModel.addAttribute("myOrder", myOrder);
-        addDateTimeFormatPatterns(uiModel);
-        return "myorders/update";
-    }
 }

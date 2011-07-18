@@ -35,6 +35,27 @@ privileged aspect MyOrderController_Roo_Controller {
         return "myorders/create";
     }
     
+    @RequestMapping(method = RequestMethod.PUT)
+    public String MyOrderController.update(@Valid MyOrder myOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            uiModel.addAttribute("myOrder", myOrder);
+            addDateTimeFormatPatterns(uiModel);
+            return "myorders/update";
+        }
+        
+        uiModel.asMap().clear();
+        myOrder.merge();
+        return "redirect:/myorders/" + encodeUrlPathSegment(myOrder.getId().toString(), httpServletRequest);
+    }
+
+	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
+    public String MyOrderController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+		MyOrder myOrder = MyOrder.findMyOrder(id);
+        uiModel.addAttribute("myOrder", myOrder);
+        addDateTimeFormatPatterns(uiModel);
+        return "myorders/update";
+    }
+    
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String MyOrderController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
