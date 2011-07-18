@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:springform="http://www.springframework.org/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_org_roora_domain_MyOrder" modelAttribute="myOrder" path="/myorders" versionField="Version" z="8a2ADlgTTAE/roXa2emsCx/rp8k=">
-    	<field:datetime render="false" dateTimePattern="${myOrder_created_date_format}" field="_created" id="c_org_roora_domain_MyOrder_created" z="3pbkdRM1sWcFvso0JOZXZtfxdVY="/>
+    <form:update id="fu_org_roora_domain_MyOrder" modelAttribute="myOrder" path="/myorders" versionField="Version" z="8a2ADlgTTAE/roXa2emsCx/rp8k=">    	
+    	<springform:hidden id="_created_id" path="created" />
         <field:input field="description" id="c_org_roora_domain_MyOrder_description" z="wq1gd2W/rMhuBS0LNUS43nDsVrA="/>
         <field:select field="store" id="c_org_roora_domain_MyOrder_store" itemValue="id" items="${stores}" path="/stores" z="S2TYC4O/ZjhuNPvndPUhtZspQS4="/>
         <field:select field="person" id="c_org_roora_domain_MyOrder_person" itemValue="id" items="${people}" path="/people" z="fCqXRhF9lfzOVHROHmDbu4BZlW0="/>

@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MyOrderController {
 	
-
 	@RequestMapping(method = RequestMethod.POST)
     public String create(@Valid MyOrder myOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -44,8 +43,6 @@ public class MyOrderController {
             addDateTimeFormatPatterns(uiModel);
             return "myorders/update";
         }
-        System.out.println(myOrder.getCreated());
-        //myOrder.setCreated((Date) uiModel.asMap().get("createdBackup"));
         
         uiModel.asMap().clear();
         myOrder.merge();
@@ -56,8 +53,6 @@ public class MyOrderController {
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
 		MyOrder myOrder = MyOrder.findMyOrder(id);
         uiModel.addAttribute("myOrder", myOrder);
-        System.out.println(myOrder.getCreated());
-        uiModel.addAttribute("createdBackup", myOrder.getCreated());
         addDateTimeFormatPatterns(uiModel);
         return "myorders/update";
     }
