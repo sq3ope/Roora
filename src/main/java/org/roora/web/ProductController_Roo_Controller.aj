@@ -27,23 +27,8 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect ProductController_Roo_Controller {
     
-    @RequestMapping(method = RequestMethod.POST)
-    public String ProductController.create(@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            uiModel.addAttribute("product", product);
-            return "products/create";
-        }
-        uiModel.asMap().clear();
-        product.persist();
-        return "redirect:/products/" + encodeUrlPathSegment(product.getId().toString(), httpServletRequest);
-    }
-    
-    @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String ProductController.createForm(Model uiModel) {
-        uiModel.addAttribute("product", new Product());
-        return "products/create";
-    }
-    
+        
+        
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String ProductController.show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("product", Product.findProduct(id));

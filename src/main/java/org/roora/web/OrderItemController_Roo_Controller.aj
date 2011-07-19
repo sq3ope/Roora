@@ -37,12 +37,7 @@ privileged aspect OrderItemController_Roo_Controller {
         return "redirect:/orderitems/" + encodeUrlPathSegment(orderItem.getId().toString(), httpServletRequest);
     }
     
-    @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String OrderItemController.createForm(Model uiModel) {
-        uiModel.addAttribute("orderItem", new OrderItem());
-        return "orderitems/create";
-    }
-    
+        
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String OrderItemController.show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("orderitem", OrderItem.findOrderItem(id));

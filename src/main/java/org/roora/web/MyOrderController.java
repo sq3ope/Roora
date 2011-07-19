@@ -31,4 +31,13 @@ public class MyOrderController {
         return "redirect:/myorders/" + encodeUrlPathSegment(myOrder.getId().toString(), httpServletRequest);
     }
 
+
+	@RequestMapping(params = "form", method = RequestMethod.GET)
+    public String createForm(Model uiModel) {
+		MyOrder myOrder = new MyOrder();
+		myOrder.setCreated(Calendar.getInstance().getTime());
+        uiModel.addAttribute("myOrder", myOrder);
+        addDateTimeFormatPatterns(uiModel);
+        return "myorders/create";
+    }
 }

@@ -28,13 +28,7 @@ import org.springframework.web.util.WebUtils;
 privileged aspect MyOrderController_Roo_Controller {
     
         
-    @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String MyOrderController.createForm(Model uiModel) {
-        uiModel.addAttribute("myOrder", new MyOrder());
-        addDateTimeFormatPatterns(uiModel);
-        return "myorders/create";
-    }
-    
+        
     @RequestMapping(method = RequestMethod.PUT)
     public String MyOrderController.update(@Valid MyOrder myOrder, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
