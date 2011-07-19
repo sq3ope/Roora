@@ -4,6 +4,8 @@ import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.roora.domain.Unit;
+
+import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import org.roora.domain.ProductGroup;
 import org.roora.reference.ProductStatus;
@@ -14,7 +16,7 @@ import javax.persistence.Enumerated;
 @RooToString
 @RooEntity
 public class Product {
-
+	@Column(unique = true)
     private String name;
 
     @ManyToOne
