@@ -1,7 +1,11 @@
 package org.roora.web;
 
+import java.text.SimpleDateFormat;
+
+import org.roora.domain.MyOrder;
 import org.roora.domain.Person;
 import org.roora.domain.Product;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.roo.addon.web.mvc.controller.RooConversionService;
@@ -18,6 +22,7 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 		// Register application converters and formatters
 		registry.addConverter(new PersonConverter());
 		registry.addConverter(new ProductConverter());
+		registry.addConverter(new MyOrderConverter());
 	}
 	
 	static class PersonConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.Person, java.lang.String>  {
@@ -32,6 +37,15 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 	    	return product.getName();
 	    }	    
 	}
+	
+    static class MyOrderConverter implements Converter<MyOrder, String>  {
+        public String convert(MyOrder myOrder) {
+	        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+	        return new StringBuilder().append(fmt.format(myOrder.getCreated()))
+	        	.append("/").append(myOrder.getDescription()).toString();
+        }        
+    }
+
 }
 
 

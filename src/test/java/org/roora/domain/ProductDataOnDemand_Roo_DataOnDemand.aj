@@ -8,6 +8,7 @@ import java.util.Random;
 import org.roora.domain.Product;
 import org.roora.domain.ProductGroupDataOnDemand;
 import org.roora.domain.UnitDataOnDemand;
+import org.roora.reference.ProductStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,6 +48,11 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
     private void ProductDataOnDemand.setProductGroup(Product obj, int index) {
         org.roora.domain.ProductGroup productGroup = productGroupDataOnDemand.getRandomProductGroup();
         obj.setProductGroup(productGroup);
+    }
+    
+    private void ProductDataOnDemand.setStatus(Product obj, int index) {
+        ProductStatus status = ProductStatus.ACTIVE;
+        obj.setStatus(status);
     }
     
     public Product ProductDataOnDemand.getSpecificProduct(int index) {

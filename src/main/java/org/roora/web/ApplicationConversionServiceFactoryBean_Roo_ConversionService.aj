@@ -16,7 +16,6 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
-        registry.addConverter(new MyOrderConverter());
         registry.addConverter(new OrderItemConverter());
         registry.addConverter(new ProductGroupConverter());
         registry.addConverter(new SectorConverter());
@@ -28,14 +27,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         super.afterPropertiesSet();
         installLabelConverters(getObject());
     }
-    
-    static class org.roora.web.ApplicationConversionServiceFactoryBean.MyOrderConverter implements Converter<MyOrder, String>  {
-        public String convert(MyOrder myOrder) {
-        return new StringBuilder().append(myOrder.getCreated()).append(" ").append(myOrder.getDescription()).toString();
-        }
         
-    }
-    
     static class org.roora.web.ApplicationConversionServiceFactoryBean.OrderItemConverter implements org.springframework.core.convert.converter.Converter<org.roora.domain.OrderItem, java.lang.String>  {
         public String convert(OrderItem orderItem) {
         return new StringBuilder().append(orderItem.getQuantity()).append(" ").append(orderItem.getDescription()).toString();
