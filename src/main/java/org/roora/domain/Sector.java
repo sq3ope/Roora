@@ -8,12 +8,18 @@ import javax.persistence.ManyToOne;
 import java.util.Set;
 import org.roora.domain.ProductGroup;
 import java.util.HashSet;
+
+import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.CascadeType;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @RooJavaBean
 @RooToString
 @RooEntity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames={"name", "store"})}
+	)
 public class Sector {
 
     private String name;
