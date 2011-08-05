@@ -4,6 +4,11 @@ import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,4 +32,7 @@ public class MyOrder {
 
     @ManyToOne
     private Person person;
+    
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "myOrder", orphanRemoval = true)
+    private Set<OrderItem> orderItems;
 }

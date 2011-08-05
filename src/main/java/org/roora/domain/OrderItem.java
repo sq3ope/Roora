@@ -5,6 +5,8 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import java.math.BigDecimal;
 import org.roora.domain.Unit;
+
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -26,7 +28,7 @@ public class OrderItem {
     @ManyToOne
     private Unit unit;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private MyOrder myOrder;
 
     @ManyToOne
