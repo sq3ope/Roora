@@ -96,17 +96,11 @@ privileged aspect Sector_Roo_Entity {
         return entityManager().createQuery("SELECT COUNT(o) FROM Sector o", Long.class).getSingleResult();
     }
     
-    public static List<Sector> Sector.findAllSectors() {
-        return entityManager().createQuery("SELECT o FROM Sector o", Sector.class).getResultList();
-    }
-    
+        
     public static Sector Sector.findSector(Long id) {
         if (id == null) return null;
         return entityManager().find(Sector.class, id);
     }
     
-    public static List<Sector> Sector.findSectorEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Sector o", Sector.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
+        
 }

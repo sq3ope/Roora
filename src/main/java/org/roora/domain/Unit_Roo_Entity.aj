@@ -96,17 +96,11 @@ privileged aspect Unit_Roo_Entity {
         return entityManager().createQuery("SELECT COUNT(o) FROM Unit o", Long.class).getSingleResult();
     }
     
-    public static List<Unit> Unit.findAllUnits() {
-        return entityManager().createQuery("SELECT o FROM Unit o", Unit.class).getResultList();
-    }
-    
+        
     public static Unit Unit.findUnit(Long id) {
         if (id == null) return null;
         return entityManager().find(Unit.class, id);
     }
     
-    public static List<Unit> Unit.findUnitEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Unit o", Unit.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
+        
 }

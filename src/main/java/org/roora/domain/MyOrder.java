@@ -4,6 +4,7 @@ import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,6 +34,14 @@ public class MyOrder {
     @ManyToOne
     private Person person;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "myOrder", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "myOrder", orphanRemoval = true)
     private Set<OrderItem> orderItems;
+
+	public static List<MyOrder> findAllMyOrders() {
+        return entityManager().createQuery("SELECT o FROM MyOrder o ORDER BY created", MyOrder.class).getResultList();
+    }
+
+	public static List<MyOrder> findMyOrderEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM MyOrder o ORDER BY created", MyOrder.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
 }

@@ -96,17 +96,11 @@ privileged aspect OrderItem_Roo_Entity {
         return entityManager().createQuery("SELECT COUNT(o) FROM OrderItem o", Long.class).getSingleResult();
     }
     
-    public static List<OrderItem> OrderItem.findAllOrderItems() {
-        return entityManager().createQuery("SELECT o FROM OrderItem o", OrderItem.class).getResultList();
-    }
-    
+        
     public static OrderItem OrderItem.findOrderItem(Long id) {
         if (id == null) return null;
         return entityManager().find(OrderItem.class, id);
     }
     
-    public static List<OrderItem> OrderItem.findOrderItemEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM OrderItem o", OrderItem.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
+        
 }

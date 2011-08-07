@@ -1,5 +1,6 @@
 package org.roora.domain;
 
+import java.util.List;
 import javax.persistence.Column;
 
 import org.springframework.roo.addon.entity.RooEntity;
@@ -20,4 +21,12 @@ public class Person {
 
     private String password;
     
+
+	public static List<Person> findAllPeople() {
+        return entityManager().createQuery("SELECT o FROM Person o ORDER BY LAST_NAME, FIRST_NAME", Person.class).getResultList();
+    }
+
+	public static List<Person> findPersonEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Person o ORDER BY LAST_NAME, FIRST_NAME", Person.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
 }

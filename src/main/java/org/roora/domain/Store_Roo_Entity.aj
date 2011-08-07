@@ -96,17 +96,11 @@ privileged aspect Store_Roo_Entity {
         return entityManager().createQuery("SELECT COUNT(o) FROM Store o", Long.class).getSingleResult();
     }
     
-    public static List<Store> Store.findAllStores() {
-        return entityManager().createQuery("SELECT o FROM Store o", Store.class).getResultList();
-    }
-    
+        
     public static Store Store.findStore(Long id) {
         if (id == null) return null;
         return entityManager().find(Store.class, id);
     }
     
-    public static List<Store> Store.findStoreEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Store o", Store.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
+        
 }

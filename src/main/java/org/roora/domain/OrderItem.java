@@ -4,6 +4,7 @@ import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import java.math.BigDecimal;
+import java.util.List;
 import org.roora.domain.Unit;
 
 import javax.persistence.CascadeType;
@@ -33,4 +34,12 @@ public class OrderItem {
 
     @ManyToOne
     private Product product;
+
+	public static List<OrderItem> findAllOrderItems() {
+        return entityManager().createQuery("SELECT o FROM OrderItem o ORDER BY MY_ORDER", OrderItem.class).getResultList();
+    }
+
+	public static List<OrderItem> findOrderItemEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM OrderItem o ORDER BY MY_ORDER", OrderItem.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
 }

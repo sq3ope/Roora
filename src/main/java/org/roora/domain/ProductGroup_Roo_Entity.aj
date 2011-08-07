@@ -96,17 +96,11 @@ privileged aspect ProductGroup_Roo_Entity {
         return entityManager().createQuery("SELECT COUNT(o) FROM ProductGroup o", Long.class).getSingleResult();
     }
     
-    public static List<ProductGroup> ProductGroup.findAllProductGroups() {
-        return entityManager().createQuery("SELECT o FROM ProductGroup o", ProductGroup.class).getResultList();
-    }
-    
+        
     public static ProductGroup ProductGroup.findProductGroup(Long id) {
         if (id == null) return null;
         return entityManager().find(ProductGroup.class, id);
     }
     
-    public static List<ProductGroup> ProductGroup.findProductGroupEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ProductGroup o", ProductGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
+        
 }

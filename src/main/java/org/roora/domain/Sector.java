@@ -5,6 +5,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.roora.domain.Store;
 import javax.persistence.ManyToOne;
+import java.util.List;
 import java.util.Set;
 import org.roora.domain.ProductGroup;
 import java.util.HashSet;
@@ -31,4 +32,12 @@ public class Sector {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<ProductGroup> productGroups = new HashSet<ProductGroup>();
+
+	public static List<Sector> findAllSectors() {
+        return entityManager().createQuery("SELECT o FROM Sector o ORDER BY ORDER_NUM", Sector.class).getResultList();
+    }
+
+	public static List<Sector> findSectorEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Sector o ORDER BY ORDER_NUM", Sector.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
 }
