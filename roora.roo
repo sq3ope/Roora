@@ -1,0 +1,61 @@
+project --topLevelPackage org.roora --projectName Roora --java 6
+
+persistence setup --provider HIBERNATE --database ORACLE 
+
+# --- Enums ---
+
+enum type --class ~.reference.ProductStatus
+enum constant --name ACTIVE
+enum constant --name LOCKED
+enum constant --name DELETED
+
+
+# --- Entities---
+
+entity jpa --class ~.domain.Unit --testAutomatically
+field string --fieldName name --notNull
+
+entity jpa --class ~.domain.OrderItem --testAutomatically
+field number --fieldName quantity --type java.math.BigDecimal --notNull
+field string --fieldName description 
+
+entity jpa --class ~.domain.MyOrder --testAutomatically
+field date --fieldName created --type java.util.Date --notNull
+field string --fieldName description 
+
+entity jpa --class ~.domain.Store --testAutomatically
+field string --fieldName name --notNull
+
+entity jpa --class ~.domain.Product --testAutomatically
+field string --fieldName name --notNull 
+field enum --fieldName status --type ~.reference.ProductStatus --notNull --class ~.domain.Product
+
+entity jpa --class ~.domain.ProductGroup --testAutomatically
+field string --fieldName name --notNull
+
+entity jpa --class ~.domain.Person --testAutomatically
+field string --fieldName email --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull                                
+field string --fieldName password --notNull
+
+entity jpa --class ~.domain.Sector --testAutomatically
+field string --fieldName name --notNull
+field number --fieldName orderNum --type java.lang.Long --class ~.domain.Sector --notNull
+
+# --- References ---
+
+field reference --fieldName unit --type ~.domain.Unit --class ~.domain.OrderItem --notNull
+field reference --fieldName myOrder --type ~.domain.MyOrder --class ~.domain.OrderItem --notNull
+field reference --fieldName store --type ~.domain.Store --class ~.domain.MyOrder
+field reference --fieldName unit --type ~.domain.Unit --class ~.domain.Product --notNull
+field reference --fieldName product --type ~.domain.Product --class ~.domain.OrderItem --notNull
+field reference --fieldName person --type ~.domain.Person --class ~.domain.MyOrder --notNull
+field reference --fieldName productGroup --type ~.domain.ProductGroup --class ~.domain.Product --notNull
+field reference --fieldName productGroup --type ~.domain.ProductGroup --class ~.domain.ProductGroup
+field reference --fieldName store --type ~.domain.Store --class ~.domain.Sector --notNull
+field set --fieldName productGroups --type ~.domain.ProductGroup --class ~.domain.Sector
+
+# --- Creating WEB tier ---
+
+controller all --package ~.web
