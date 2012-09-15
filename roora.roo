@@ -1,6 +1,6 @@
 project --topLevelPackage org.roora --projectName Roora --java 6
 
-persistence setup --provider HIBERNATE --database ORACLE 
+persistence setup --provider DATANUCLEUS --database GOOGLE_APP_ENGINE --applicationId sq3ope
 
 # --- Entities---
 
