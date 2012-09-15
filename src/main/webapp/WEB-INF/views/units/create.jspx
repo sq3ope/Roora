@@ -4,6 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_org_roora_domain_Unit" modelAttribute="unit" path="/units" render="${empty dependencies}" z="BfpVBGG1p9DmuRMy5M8fT+TsEz0=">
         <field:input field="name" id="c_org_roora_domain_Unit_name" required="true" z="13/nEvAmAWcKvEq/HEQMK3YPKEw="/>
+        <field:simple field="products" id="c_org_roora_domain_Unit_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="873YtWvPgXhMbimgEjR8H3OSyZE="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_org_roora_domain_Unit" render="${not empty dependencies}" z="DEEYdMimNvnMzWM7NJh7BqelAIw="/>
 </div>

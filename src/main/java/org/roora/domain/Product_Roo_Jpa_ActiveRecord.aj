@@ -32,8 +32,8 @@ privileged aspect Product_Roo_Jpa_ActiveRecord {
     }
     
     @Transactional
-    public static Product Product.findProduct(Long id) {
-        if (id == null) return null;
+    public static Product Product.findProduct(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(Product.class, id);
     }
     

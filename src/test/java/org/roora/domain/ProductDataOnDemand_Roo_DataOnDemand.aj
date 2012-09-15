@@ -54,14 +54,14 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
             index = data.size() - 1;
         }
         Product obj = data.get(index);
-        Long id = obj.getId();
+        String id = obj.getId();
         return Product.findProduct(id);
     }
     
     public Product ProductDataOnDemand.getRandomProduct() {
         init();
         Product obj = data.get(rnd.nextInt(data.size()));
-        Long id = obj.getId();
+        String id = obj.getId();
         return Product.findProduct(id);
     }
     

@@ -53,7 +53,7 @@ privileged aspect ProductIntegrationTest_Roo_IntegrationTest {
     public void ProductIntegrationTest.testFindProduct() {
         Product obj = dod.getRandomProduct();
         Assert.assertNotNull("Data on demand for 'Product' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Product' failed to provide an identifier", id);
         obj = Product.findProduct(id);
         Assert.assertNotNull("Find method for 'Product' illegally returned null for id '" + id + "'", obj);
@@ -86,7 +86,7 @@ privileged aspect ProductIntegrationTest_Roo_IntegrationTest {
     public void ProductIntegrationTest.testFlush() {
         Product obj = dod.getRandomProduct();
         Assert.assertNotNull("Data on demand for 'Product' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Product' failed to provide an identifier", id);
         obj = Product.findProduct(id);
         Assert.assertNotNull("Find method for 'Product' illegally returned null for id '" + id + "'", obj);
@@ -100,7 +100,7 @@ privileged aspect ProductIntegrationTest_Roo_IntegrationTest {
     public void ProductIntegrationTest.testMergeUpdate() {
         Product obj = dod.getRandomProduct();
         Assert.assertNotNull("Data on demand for 'Product' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Product' failed to provide an identifier", id);
         obj = Product.findProduct(id);
         boolean modified =  dod.modifyProduct(obj);
@@ -127,7 +127,7 @@ privileged aspect ProductIntegrationTest_Roo_IntegrationTest {
     public void ProductIntegrationTest.testRemove() {
         Product obj = dod.getRandomProduct();
         Assert.assertNotNull("Data on demand for 'Product' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Product' failed to provide an identifier", id);
         obj = Product.findProduct(id);
         obj.remove();

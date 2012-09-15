@@ -3,6 +3,8 @@
 
 package org.roora.domain;
 
+import java.util.Set;
+import org.roora.domain.Product;
 import org.roora.domain.Unit;
 
 privileged aspect Unit_Roo_JavaBean {
@@ -13,6 +15,14 @@ privileged aspect Unit_Roo_JavaBean {
     
     public void Unit.setName(String name) {
         this.name = name;
+    }
+    
+    public Set<Product> Unit.getProducts() {
+        return this.products;
+    }
+    
+    public void Unit.setProducts(Set<Product> products) {
+        this.products = products;
     }
     
 }

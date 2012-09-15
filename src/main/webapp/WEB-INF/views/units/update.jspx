@@ -4,5 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_org_roora_domain_Unit" modelAttribute="unit" path="/units" versionField="Version" z="bQcfYN4pN9l3gyEhpp1QmjBhyDs=">
         <field:input field="name" id="c_org_roora_domain_Unit_name" required="true" z="13/nEvAmAWcKvEq/HEQMK3YPKEw="/>
+        <field:simple field="products" id="c_org_roora_domain_Unit_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="873YtWvPgXhMbimgEjR8H3OSyZE="/>
     </form:update>
 </div>

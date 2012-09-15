@@ -42,14 +42,14 @@ privileged aspect UnitDataOnDemand_Roo_DataOnDemand {
             index = data.size() - 1;
         }
         Unit obj = data.get(index);
-        Long id = obj.getId();
+        String id = obj.getId();
         return Unit.findUnit(id);
     }
     
     public Unit UnitDataOnDemand.getRandomUnit() {
         init();
         Unit obj = data.get(rnd.nextInt(data.size()));
-        Long id = obj.getId();
+        String id = obj.getId();
         return Unit.findUnit(id);
     }
     

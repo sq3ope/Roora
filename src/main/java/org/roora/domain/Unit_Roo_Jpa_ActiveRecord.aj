@@ -32,8 +32,8 @@ privileged aspect Unit_Roo_Jpa_ActiveRecord {
     }
     
     @Transactional
-    public static Unit Unit.findUnit(Long id) {
-        if (id == null) return null;
+    public static Unit Unit.findUnit(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(Unit.class, id);
     }
     

@@ -18,17 +18,17 @@ privileged aspect Product_Roo_Jpa_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Product.id;
+    private String Product.id;
     
     @Version
     @Column(name = "version")
     private Integer Product.version;
     
-    public Long Product.getId() {
+    public String Product.getId() {
         return this.id;
     }
     
-    public void Product.setId(Long id) {
+    public void Product.setId(String id) {
         this.id = id;
     }
     

@@ -4,15 +4,17 @@ persistence setup --provider DATANUCLEUS --database GOOGLE_APP_ENGINE --applicat
 
 # --- Entities---
 
-entity jpa --class ~.domain.Unit --testAutomatically
+entity jpa --class ~.domain.Unit --testAutomatically --identifierType java.lang.String
 field string --fieldName name --notNull
 
-entity jpa --class ~.domain.Product --testAutomatically
+entity jpa --class ~.domain.Product --testAutomatically --identifierType java.lang.String
 field string --fieldName name --notNull 
 
 # --- References ---
 
 field reference --fieldName unit --type ~.domain.Unit --class ~.domain.Product --notNull
+focus --class Unit
+field set --fieldName products --type ~.domain.Product --cardinality ONE_TO_MANY --mappedBy unit
 
 # --- Creating WEB tier ---
 

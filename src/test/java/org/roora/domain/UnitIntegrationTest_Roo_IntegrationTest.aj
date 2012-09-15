@@ -53,7 +53,7 @@ privileged aspect UnitIntegrationTest_Roo_IntegrationTest {
     public void UnitIntegrationTest.testFindUnit() {
         Unit obj = dod.getRandomUnit();
         Assert.assertNotNull("Data on demand for 'Unit' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Unit' failed to provide an identifier", id);
         obj = Unit.findUnit(id);
         Assert.assertNotNull("Find method for 'Unit' illegally returned null for id '" + id + "'", obj);
@@ -86,7 +86,7 @@ privileged aspect UnitIntegrationTest_Roo_IntegrationTest {
     public void UnitIntegrationTest.testFlush() {
         Unit obj = dod.getRandomUnit();
         Assert.assertNotNull("Data on demand for 'Unit' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Unit' failed to provide an identifier", id);
         obj = Unit.findUnit(id);
         Assert.assertNotNull("Find method for 'Unit' illegally returned null for id '" + id + "'", obj);
@@ -100,7 +100,7 @@ privileged aspect UnitIntegrationTest_Roo_IntegrationTest {
     public void UnitIntegrationTest.testMergeUpdate() {
         Unit obj = dod.getRandomUnit();
         Assert.assertNotNull("Data on demand for 'Unit' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Unit' failed to provide an identifier", id);
         obj = Unit.findUnit(id);
         boolean modified =  dod.modifyUnit(obj);
@@ -127,7 +127,7 @@ privileged aspect UnitIntegrationTest_Roo_IntegrationTest {
     public void UnitIntegrationTest.testRemove() {
         Unit obj = dod.getRandomUnit();
         Assert.assertNotNull("Data on demand for 'Unit' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        String id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Unit' failed to provide an identifier", id);
         obj = Unit.findUnit(id);
         obj.remove();

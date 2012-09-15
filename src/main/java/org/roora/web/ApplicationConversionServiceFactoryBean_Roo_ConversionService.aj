@@ -22,18 +22,10 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Long, Product> ApplicationConversionServiceFactoryBean.getIdToProductConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, org.roora.domain.Product>() {
-            public org.roora.domain.Product convert(java.lang.Long id) {
-                return Product.findProduct(id);
-            }
-        };
-    }
-    
-    public Converter<String, Product> ApplicationConversionServiceFactoryBean.getStringToProductConverter() {
+    public Converter<String, Product> ApplicationConversionServiceFactoryBean.getIdToProductConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, org.roora.domain.Product>() {
-            public org.roora.domain.Product convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Product.class);
+            public org.roora.domain.Product convert(java.lang.String id) {
+                return Product.findProduct(id);
             }
         };
     }
@@ -46,18 +38,10 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Long, Unit> ApplicationConversionServiceFactoryBean.getIdToUnitConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, org.roora.domain.Unit>() {
-            public org.roora.domain.Unit convert(java.lang.Long id) {
-                return Unit.findUnit(id);
-            }
-        };
-    }
-    
-    public Converter<String, Unit> ApplicationConversionServiceFactoryBean.getStringToUnitConverter() {
+    public Converter<String, Unit> ApplicationConversionServiceFactoryBean.getIdToUnitConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, org.roora.domain.Unit>() {
-            public org.roora.domain.Unit convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Unit.class);
+            public org.roora.domain.Unit convert(java.lang.String id) {
+                return Unit.findUnit(id);
             }
         };
     }
@@ -65,10 +49,8 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getProductToStringConverter());
         registry.addConverter(getIdToProductConverter());
-        registry.addConverter(getStringToProductConverter());
         registry.addConverter(getUnitToStringConverter());
         registry.addConverter(getIdToUnitConverter());
-        registry.addConverter(getStringToUnitConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

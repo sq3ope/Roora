@@ -6,6 +6,7 @@ package org.roora.web;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.roora.domain.Product;
 import org.roora.domain.Unit;
 import org.roora.web.UnitController;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ privileged aspect UnitController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String UnitController.show(@PathVariable("id") Long id, Model uiModel) {
+    public String UnitController.show(@PathVariable("id") String id, Model uiModel) {
         uiModel.addAttribute("unit", Unit.findUnit(id));
         uiModel.addAttribute("itemId", id);
         return "units/show";
@@ -69,13 +70,13 @@ privileged aspect UnitController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String UnitController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public String UnitController.updateForm(@PathVariable("id") String id, Model uiModel) {
         populateEditForm(uiModel, Unit.findUnit(id));
         return "units/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String UnitController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String UnitController.delete(@PathVariable("id") String id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Unit unit = Unit.findUnit(id);
         unit.remove();
         uiModel.asMap().clear();
@@ -86,6 +87,7 @@ privileged aspect UnitController_Roo_Controller {
     
     void UnitController.populateEditForm(Model uiModel, Unit unit) {
         uiModel.addAttribute("unit", unit);
+        uiModel.addAttribute("products", Product.findAllProducts());
     }
     
     String UnitController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
