@@ -15,6 +15,7 @@
             <property name="datanucleus.validateTables" value="false"/>
             <property name="datanucleus.validateConstraints" value="false"/>
             <property name="datanucleus.jpa.addClassTransformer" value="false"/>
+            <property name="datanucleus.cache.level2.type" value="none"/>
         </properties>
     </persistence-unit>
 </persistence>
