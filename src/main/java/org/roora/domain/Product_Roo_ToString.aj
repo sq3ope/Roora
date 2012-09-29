@@ -3,14 +3,16 @@
 
 package org.roora.domain;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.roora.domain.Product;
+import java.lang.String;
 
 privileged aspect Product_Roo_ToString {
     
     public String Product.toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ").append(getName()).append(", ");
+        sb.append("Unit: ").append(getUnit()).append(", ");
+        sb.append("UnitId: ").append(getUnitId());
+        return sb.toString();
     }
     
 }

@@ -3,8 +3,8 @@
 
 package org.roora.domain;
 
-import org.roora.domain.Product;
-import org.roora.domain.Unit;
+import java.lang.Long;
+import java.lang.String;
 
 privileged aspect Product_Roo_JavaBean {
     
@@ -16,12 +16,12 @@ privileged aspect Product_Roo_JavaBean {
         this.name = name;
     }
     
-    public Unit Product.getUnit() {
-        return this.unit;
+    public Long Product.getUnitId() {
+        return this.unitId;
     }
     
-    public void Product.setUnit(Unit unit) {
-        this.unit = unit;
+    public void Product.setUnitId(Long unitId) {
+        this.unitId = unitId;
     }
     
 }
